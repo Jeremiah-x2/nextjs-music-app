@@ -5,7 +5,33 @@ import Playlist from "./ui/Playlist";
 
 const time = new Date().getHours();
 const greeting = time >= 0 && time < 12 ? "Good Morning" : "Good Evening";
-export default function Home() {
+const token =
+  "BQBe7XM9Rh8OARpGRzSrPQHqLRIPEiBFLTsNv6ODwRKtNrNRnp1L_lARcncDNM8t0xdrzQv3uddgPhEjzD6MMVSErvlgRuTTftaE_nsNfLTKr0d86cCGnq1w32GMSUSCLamk-JS4Q2H_lHyZFOsCyK6xoKlwAvVQ-2_RDos9qmjsZII6NVqmP7IlTm1siBgFQu66xW_UMICsQdPyRESaymIIKTU6iNSO5RwPIjvRkNyBH02jb1nNwp_1rkUB2w2hh59VjgjCAtYOEjFNY4JCwOeloSxG1Q";
+
+async function getMusicData(
+  endpoint: string,
+  method: "GET" | "POST" | "PATCH" | "PUT",
+  body?: any
+) {
+  const res: Response = await fetch(`https://api.spotify.com/tracks`, {
+    headers: { Authorization: `Bearer ${token}` },
+    method,
+    body: JSON.stringify(body),
+  });
+
+  return await res.json();
+}
+
+async function getTopTracks() {
+  // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+  return (
+    await getMusicData("v1/me/top/tracks?time_range=long_term&limit=5", "GET")
+  ).items;
+}
+
+export default async function Home() {
+  const tracks = await getTopTracks();
+  console.log("HELLO SPOTIFY...", tracks);
   return (
     <main className="mx-[2.75rem] my-[3.25rem] space-y-[49px]">
       <h4 className="text-text-white text-[36px] font-bold mb-[38px]">
