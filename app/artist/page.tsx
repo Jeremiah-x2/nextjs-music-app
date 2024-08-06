@@ -49,7 +49,7 @@ export default async function ArtistPage() {
   );
 }
 
-export function ArtistInfo({ data }: { data: any }) {
+function ArtistInfo({ data }: { data: any }) {
   return (
     <section className="h-[438px] w-full before:content-[''] relative before:absolute before:w-full before:h-full before:bg-gradient-to-b from-white to-[#000000] before:opacity-50">
       <div className="w-full h-full border-2 border-purple-900">
@@ -84,7 +84,7 @@ export function ArtistInfo({ data }: { data: any }) {
   );
 }
 
-export function ArtistPopularTracks({ topTracks }: { topTracks: any }) {
+function ArtistPopularTracks({ topTracks }: { topTracks: any }) {
   return (
     <section className="space-y-8 px-6 py-7 mt-16">
       <h4 className="text-3xl font-bold">Popular</h4>
