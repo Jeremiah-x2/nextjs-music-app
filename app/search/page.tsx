@@ -71,7 +71,7 @@ export default function Search() {
   );
 }
 
-export function Playlist({
+function Playlist({
   item,
 }: {
   item: { thumbnail: string; name: string; description: string };
@@ -103,7 +103,7 @@ export function Playlist({
   );
 }
 
-export function MenuLists() {
+function MenuLists() {
   const menuOptions: { text: string; isActive: boolean }[] = [
     { text: "All", isActive: true },
     { text: "Playlists", isActive: false },
@@ -122,7 +122,7 @@ export function MenuLists() {
   );
 }
 
-export function MenuItem({
+function MenuItem({
   menuItem,
 }: {
   menuItem: { text: string; isActive: boolean };
